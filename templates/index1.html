@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <title>Credit Score Predictor</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="blog-header lh-1 py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1">
+            <a class="link-secondary" href="#">Subscribe</a>
+          </div>
+          <div class="col-4 text-center">
+            <a
+              class="blog-header-logo text-dark"
+              href="#"
+              style="font-size: 1.5rem"
+              >Credit Score Predictor</a
+            >
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            <a class="link-secondary" href="#" aria-label="Search">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                class="mx-3"
+                role="img"
+                viewBox="0 0 24 24"
+              >
+                <title>Search</title>
+                <circle cx="10.5" cy="10.5" r="7.5" />
+                <path d="M21 21l-5.2-5.2" />
+              </svg>
+            </a>
+            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div
+      class="row mb-2"
+      style="
+        margin: auto;
+        background-color: #b3cdde;
+        width: 100%;
+        padding: 2rem;
+      "
+    >
+      <div class="col-md-6" style="margin-top: 2rem">
+        <div style="margin-left: 10rem">
+          <h1>Estimate Your Credit Score</h1>
+          <br />
+          <p style="font-size: 1.2rem">
+            Your credit score is one of the most important numbers in your
+            financial life. It can determine whether you can get financing and
+            can mean the difference between a preferential rate that saves you
+            thousands of dollars or a more expensive loan.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6" style="margin-top: 2rem">
+        <img
+          src="https://ecm.capitalone.com/WCM/creditwise/cw-simulator-banner-b4.d-desktop.png"
+          style="width: 450px; height: 400px"
+        />
+      </div>
+    </div>
+
+    <br /><br /><br />
+    <main class="container">
+      <div class="col-md-9">
+        <article
+          class="blog-post"
+          style="font-family: Arial, Helvetica, sans-serif"
+        >
+          <h1
+            style="
+              font-family: Arial, Helvetica, sans-serif;
+              background-color: #013d5b;
+              color: white;
+              border-radius: 1rem;
+              padding: 1rem;
+            "
+          >
+            <b>Credit Score Predictor</b>
+          </h1>
+          <br />
+          <p>
+            Estimate your credit score in about 30 seconds. Just answer a few
+            simple questions about your past credit usage:
+          </p>
+        </article>
+        <container class="card" style="padding: 2rem">
+          <form action="{{ url_for('predict')}}" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Age</label>
+                <input
+                  type="number"
+                  name="Age"
+                  placeholder="Age"
+                  required="required"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="age">Annual Income</label>
+                <input
+                  type="number"
+                  name="Annual_Income"
+                  placeholder="Annual Income"
+                  required="required"
+                  class="form-control"
+                  id="age"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Num_Bank_Accounts">Number of Bank Accounts</label>
+                <input
+                  type="number"
+                  name="Num_Bank_Accounts"
+                  placeholder="Num of Bank Accounts"
+                  required="required"
+                  class="form-control"
+                  id="Num_Bank_Accounts"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Num_Credit_Card">Number of Credit Cards</label>
+                <input
+                  type="number"
+                  name="Num_Credit_Card"
+                  placeholder="Num of Credit Cards"
+                  required="required"
+                  class="form-control"
+                  id="Num_Credit_Card"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Interest_Rate">Interest Rate</label>
+                <input
+                  type="number"
+                  name="Interest_Rate"
+                  placeholder="Interest Rate"
+                  required="required"
+                  class="form-control"
+                  id="Interest_Rate"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Num_of_Loan">Number of Loans</label>
+                <input
+                  type="number"
+                  name="Num_of_Loan"
+                  placeholder="Number of Loans"
+                  required="required"
+                  class="form-control"
+                  id="Num_of_Loan"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Delay_from_due_date">Delay from due date</label>
+                <input
+                  type="number"
+                  name="Delay_from_due_date"
+                  placeholder="Delay from due date"
+                  required="required"
+                  class="form-control"
+                  id="Delay_from_due_date"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Num_of_Delayed_Payment"
+                  >Number of Delayed Payments</label
+                >
+                <input
+                  type="number"
+                  name="Num_of_Delayed_Payment"
+                  placeholder="Number of Delayed Payments"
+                  required="required"
+                  class="form-control"
+                  id="Num_of_Delayed_Payment"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Credit_Mix">Credit Mix</label>
+                <select name="Credit_Mix" class="form-control" id="Credit_Mix" required="required">
+                    <option value="0">_</option>
+                    <option value="1">Bad</option>
+                    <option value="2">Standard</option>
+                    <option value="3">Good</option>
+                </select>
+            </div>
+            
+              <div class="form-group col-md-6">
+                <label for="Outstanding_Debt">Outstanding Debt</label>
+                <input
+                  type="number"
+                  name="Outstanding_Debt"
+                  placeholder="Outstanding Debt"
+                  required="required"
+                  class="form-control"
+                  id="Outstanding_Debt"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Credit_Utilization_Ratio"
+                  >Credit Utilization Ratio</label
+                >
+                <input
+                  type="number"
+                  name="Credit_Utilization_Ratio"
+                  placeholder="Credit Utilization Ratio"
+                  required="required"
+                  class="form-control"
+                  id="Credit_Utilization_Ratio"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Credit_History_Age">Credit History Age</label>
+                <input
+                  type="number"
+                  name="Credit_History_Age"
+                  placeholder="Credit History Age"
+                  required="required"
+                  class="form-control"
+                  id="Credit_History_Age"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Total_EMI_per_month">Total EMI per month</label>
+                <input
+                  type="number"
+                  name="Total_EMI_per_month"
+                  placeholder="Total EMI per month"
+                  required="required"
+                  class="form-control"
+                  id="Total_EMI_per_month"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Amount_invested_monthly"
+                  >Amount invested monthly</label
+                >
+                <input
+                  type="number"
+                  name="Amount_invested_monthly"
+                  placeholder="Amount invested monthly"
+                  required="required"
+                  class="form-control"
+                  id="Amount_invested_monthly"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Payment_Behaviour">Payment Behaviour</label>
+                <select name="Payment_Behaviour" class="form-control" id="Payment_Behaviour" required="required">
+                    <option value="0">Low_spent_Small_value_payments</option>
+                    <option value="1">Low_spent_Medium_value_payments</option>
+                    <option value="2">High_spent_Small_value_payments</option>
+                    <option value="3">Low_spent_Large_value_payments</option>
+                    <option value="4">High_spent_Medium_value_payments</option>
+                    <option value="5">High_spent_Large_value_payments</option>
+                </select>
+            </div>
+            
+              <div class="form-group col-md-6">
+                <label for="Monthly_Balance">Monthly Balance</label>
+                <input
+                  type="number"
+                  name="Monthly_Balance"
+                  placeholder="Monthly Balance"
+                  required="required"
+                  class="form-control"
+                  id="Monthly_Balance"
+                />
+              </div>
+              <!-- <div class="form-group col-md-4">
+                <label for="PMA_NM">PMA NM</label>
+                <input
+                  type="number"
+                  name="PMA_NM"
+                  placeholder="PMA NM"
+                  required="required"
+                  class="form-control"
+                  id="PMA_NM"
+                />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="PMA_No">PMA No</label>
+                <input
+                  type="number"
+                  name="PMA_No"
+                  placeholder="PMA No"
+                  required="required"
+                  class="form-control"
+                  id="PMA_No"
+                />
+              </div>
+              <div class="form-group col-md-4">
+                <label for="PMA_Yes">PMA Yes</label>
+                <input
+                  type="number"
+                  name="PMA_Yes"
+                  placeholder="PMA Yes"
+                  required="required"
+                  class="form-control"
+                  id="PMA_Yes"
+                />
+              </div> -->
+              <div class="form-group col-md-6">
+                <label for="Payment_of_Min_Amount">Payment of Min Amount</label>
+                <select name="Payment_of_Min_Amount" class="form-control" id="Payment_of_Min_Amount" required="required">
+                    <option value="No">No</option>
+                    <option value="NM">Not Mentioned</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            
+              <button
+                type="submit"
+                class="btn btn-secondary btn-lg"
+                style="margin-left: 85%; background-color: #013d5b"
+              >
+                Calculate
+              </button>
+            </div>
+          </form>
+        </container>
+        <br /><br />
+        {% if prediction_placeholder in [0, 1, 2] %}
+        <container class="card" style="padding: 2rem">
+          {% if prediction_placeholder == 1 %}
+
+          <h2 style="color: #013d5b">Results</h2>
+          <hr />
+          <p style="font-size: 1.5rem">Credit Score: Standard</p>
+          <p>A standard credit score means that you will likely be eligible for application of small amount for loan</p>
+          {% elif prediction_placeholder == 0 %}
+          <p style="font-size: 1.5rem">Credit Score: Poor</p>
+          <p>A poor credit score means that you are not eligible for application of loans</p>
+          {% elif prediction_placeholder == 2 %}
+          <p style="font-size: 1.5rem">Credit Score: Good</p>
+          <p>A good credit score means that you will likely be eligible for application of large sum for loan</p>
+          {% endif %}
+        </container>
+        {% endif %}
+
+        <br />
+        <br /><br /><br />
+        <article
+          class="blog-post"
+          style="font-family: Arial, Helvetica, sans-serif"
+        >
+          <h1 style="font-family: Arial, Helvetica, sans-serif">
+            <b>What Is a Credit Score?</b>
+          </h1>
+          <p>
+            A credit score is tabulated by credit bureaus, who get information
+            from the banks and companies you do business with about your
+            financial payments. Based on this, credit bureaus use algorithms to
+            determine a three-digit score for you. Your score is based on five
+            basic things:
+          </p>
+          <ul>
+            <li>
+              How often you pay your bills on time and how often you’re late
+              (this accounts for roughly 35% of your score).
+            </li>
+            <li>How much you owe (this accounts for about 10%).</li>
+            <li>
+              How many types of debts and credit lines you have right now (this
+              accounts for approximately 10% of your score).
+            </li>
+            <li>
+              Credit history length (about 15% of your score is related to
+              this).
+            </li>
+            <li>
+              The number of times your credit score and report have been pulled
+              and examined recently (accounts for about 10%).
+            </li>
+          </ul>
+          <p>As you can see, how much you earn is not taken into account.</p>
+        </article>
+
+        <article
+          class="blog-post"
+          style="font-family: Arial, Helvetica, sans-serif"
+        >
+          <h1 style="font-family: Arial, Helvetica, sans-serif">
+            <b>Having a Good Credit Score</b>
+          </h1>
+          <p>
+            Credit Score can be classified as poor, standard and good. A good
+            credit score is most likely to get you prime rates. A poor credit
+            score mean you get rejected for credit line increases and loans.
+          </p>
+          <p>
+            Your credit score is most often used when you apply for financing,
+            such as a new loan or credit card. However, some employers will look
+            at it when deciding whether you can handle a job related to money,
+            and even some landlords will consider credit when deciding whether
+            to rent to you.
+          </p>
+          <p>
+            You can get a copy of your credit report and your credit score from
+            the three major credit bureaus. While you are entitled to one free
+            credit report a year, you may need to pay for the score.
+          </p>
+        </article>
+        <article
+          class="blog-post"
+          style="font-family: Arial, Helvetica, sans-serif"
+        >
+          <h1 style="font-family: Arial, Helvetica, sans-serif">
+            <b>Credit Score Calculators</b>
+          </h1>
+          <p>
+            Money Help Center has made it easy for you to get a sense of what
+            your credit score might be like with this handy credit score
+            calculator. Use our credit score simulator to determine what your
+            score might be, how your current efforts to raise your score are
+            working and more. Wondering how an extra credit card or loan might
+            impact your score? Want to see what a difference paying bills on
+            time might have? Our handy and free resource can help.
+          </p>
+        </article>
+      </div>
+    </main>
+    <footer class="blog-footer" style="background-color: #013d5b">
+      <p style="font-size: 2rem">Make the best credit decisions you can</p>
+      <p>
+        <a href="#" style="font-size: 1.5rem">Back to top</a>
+      </p>
+    </footer>
+  </body>
+</html>
